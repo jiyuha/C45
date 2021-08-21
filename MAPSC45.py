@@ -24,7 +24,7 @@ def data_split(data, _portion: float):
 
 def fit(data, attribute, config):
     # 나중에 함수들 다시 정리
-    result = [i for i in Training.buildDecisionTree(data, attribute, config, start=True, max_depth=3)]
+    result = [i for i in Training.buildDecisionTree(data, attribute, config, start=True, max_depth=10)]
     rule_decision = []
     for i in result:
         rule_decision.append([i.rule, max(list(map(lambda x: x.Decision, i.dataset)),
