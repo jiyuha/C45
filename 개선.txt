@@ -1,0 +1,5 @@
+csv 조건
+1. Decision의 종류가 2개(good, bad)여야함
+2. 'Decision' 이라는 column이 있어야함
+3. Data split시, Data 크기가 너무 작으면 안됨. Decision 종류가 2개 이상 되어야함.
+4. Data에 '.'이 있으면 안됨. 띄어쓰기는 상관없음.

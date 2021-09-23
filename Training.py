@@ -1,10 +1,12 @@
 import math
 import numpy as np
 import data_load
-from graphviz import Digraph
+from time import sleep
+from tqdm import tqdm
+from colorama import Style, Fore
 
 
-def buildDecisionTree(data, attribute, config, start=True, max_depth=3):
+def buildDecisionTree(data, attribute, config, max_depth=3):
     winner_attribute, data = findGains(data, attribute,
                                        config)  # branch 에 쓰일 attribute 선택 / instance 에서 연속형 변수들 범주형으로 변함
     if winner_attribute.type is 'Continuous':
@@ -20,58 +22,62 @@ def buildDecisionTree(data, attribute, config, start=True, max_depth=3):
     result_leaf = []  # terminateBuilding 이 True 인 leaf
 
     decisions = list(set(list(map(lambda x: x.Decision, data))))
-    if start:
+
+    # =========================================
+
+    for _leaf, _index in tqdm(enumerate(range(len(classes))), desc=Fore.GREEN + Style.BRIGHT + "Creating Root... ", mininterval=0.1):
+    #for _leaf, _index in enumerate(range(len(classes))):
+        _leaf = data_load.Leaf()
+
+        if winner_attribute.type is 'Continuous':
+            _leaf.rule += 'obj.' + str(winner_attribute.name) + ' ' + str(classes[_index])
+            processed_data = list(filter(lambda x: x.winner == classes[_index], data))
+        else:
+            _leaf.rule += 'obj.' + str(winner_attribute.name) + ' == ' + "'" + str(classes[_index]) + "'"
+            processed_data = list(
+                filter(lambda x: x.__getattribute__(winner_attribute.name) == classes[_index], data))
+
+        _leaf.parent = root
+        _leaf.id = '1' + str(_index)
+        _leaf.classes = classes[_index]
 
         # =========================================
 
-        for _leaf, _index in enumerate(range(len(classes))):
-            _leaf = data_load.Leaf()
+        _leaf.dataset = processed_data  # parent leaf 의 데이터 에서 child leaf 로 branch 된 데이터만 가져감
+        num_of_decisions = []
+        for i in decisions:
+            num_of_decisions.append(list(map(lambda x: x.Decision, _leaf.dataset)).count(i))
+        _leaf.decision = num_of_decisions
+        for i in _leaf.dataset:
+            data.remove(i)
+        # =========================================
 
-            if winner_attribute.type is 'Continuous':
-                _leaf.rule += 'obj.' + str(winner_attribute.name) + ' ' + str(classes[_index])
-                processed_data = list(filter(lambda x: x.winner == classes[_index], data))
-            else:
-                _leaf.rule += 'obj.' + str(winner_attribute.name) + ' is ' + "'" + str(classes[_index]) + "'"
-                processed_data = list(
-                    filter(lambda x: x.__getattribute__(winner_attribute.name) == classes[_index], data))
-
-            _leaf.parent = '1'
-            _leaf.id = '1' + str(_index)
-            _leaf.classes = classes[_index]
-
-            # =========================================
-
-            _leaf.dataset = processed_data  # parent leaf 의 데이터 에서 child leaf 로 branch 된 데이터만 가져감
-            num_of_decisions = []
-            for i in decisions:
-                num_of_decisions.append(list(map(lambda x: x.Decision, _leaf.dataset)).count(i))
-            _leaf.decision = num_of_decisions
+        if winner_attribute.type is 'Categorical':  # 이번 branch 에 쓰인 attribute 가 범주형이면 그 attribute 는 삭제
             for i in _leaf.dataset:
-                data.remove(i)
-            # =========================================
+                i.usedCategorical.append(winner_attribute.name)
+                delattr(i, winner_attribute.name)
 
-            if winner_attribute.type is 'Categorical':  # 이번 branch 에 쓰인 attribute 가 범주형이면 그 attribute 는 삭제
-                for i in _leaf.dataset:
-                    i.usedCategorical.append(winner_attribute.name)
-                    delattr(i, winner_attribute.name)
+        # =========================================
+        # branch 중지 조건
+        if len(set(map(lambda x: x.Decision, _leaf.dataset))) == 1:
+            _leaf.terminateBuilding = True
+            result_leaf.append(_leaf)  # branch 중지 시, result_leaf 에 넣어야 함
 
-            # =========================================
-            # branch 중지 조건
-            if len(set(map(lambda x: x.Decision, _leaf.dataset))) == 1:
-                _leaf.terminateBuilding = True
-                result_leaf.append(_leaf)  # branch 중지 시, result_leaf 에 넣어야 함
-
-            # =========================================
-            _leaf.branch += 1
-            leaf_list.append(_leaf)  # 모든 leaf 는 leaf_list 에 들어감
+        # =========================================
+        _leaf.branch += 1
+        _leaf.predict = decisions[num_of_decisions.index(max(num_of_decisions))]
+        leaf_list.append(_leaf)  # 모든 leaf 는 leaf_list 에 들어감
+        sleep(0.1)
 
     # =========================================
+    depth = 2
     while len(set(filter(lambda x: x.terminateBuilding is False, leaf_list))) >= 1:
-        for _leaf in list(
-                filter(lambda x: x.terminateBuilding is False, leaf_list)):  # 이제부터 _leaf 는 parent leaf 로 생각하면 됩니다.
-
+        for _leaf in tqdm(list(
+                filter(lambda x: x.terminateBuilding is False, leaf_list)), desc=Fore.GREEN + Style.BRIGHT + "Creating Tree...(Depth = " +
+                                                                                 str(depth) + ')', mininterval=0.1):  # 이제부터 _leaf 는 parent leaf 로 생각하면 됩니다.
+        #for _leaf in list(
+        #        filter(lambda x: x.terminateBuilding is False, leaf_list)):
             # =========================================
-
             winner_attribute, _leaf.dataset = findGains(_leaf.dataset, attribute, config)
             _leaf.branchAttribute = winner_attribute.name
             if winner_attribute.type is 'Continuous':
@@ -91,12 +97,12 @@ def buildDecisionTree(data, attribute, config, start=True, max_depth=3):
                     _child_leaf.rule += 'obj.' + str(winner_attribute.name) + str(classes[_index])
                     processed_data = list(filter(lambda x: x.winner == classes[_index], _leaf.dataset))
                 else:
-                    _child_leaf.rule += 'obj.' + str(winner_attribute.name) + ' is ' + "'" + str(classes[_index]) + "'"
+                    _child_leaf.rule += 'obj.' + str(winner_attribute.name) + ' == ' + "'" + str(classes[_index]) + "'"
                     processed_data = list(
                         filter(lambda x: x.__getattribute__(winner_attribute.name) == classes[_index], _leaf.dataset))
 
-                _child_leaf.parent = _leaf.id
-                _child_leaf.id = _child_leaf.parent + str(_index)
+                _child_leaf.parent = _leaf
+                _child_leaf.id = _child_leaf.parent.id + str(_index)
 
                 # =========================================
 
@@ -124,22 +130,31 @@ def buildDecisionTree(data, attribute, config, start=True, max_depth=3):
                         result_leaf.append(_child_leaf)
 
                     # 2. max depth = 3
-                    if _child_leaf.branch >= max_depth:
+                    if _child_leaf.branch >= max_depth - 1:
                         _child_leaf.terminateBuilding = True
                         result_leaf.append(_child_leaf)
 
                     # 3.
+                    """
+                    if min(_child_leaf.decision) / max(_child_leaf.decision) <= 0.1:
+                        _child_leaf.terminateBuilding = True
+                        result_leaf.append(_child_leaf)
 
                     # 4.
 
+                    if len(_child_leaf.dataset) < 10:
+                        _child_leaf.terminateBuilding = True
+                        result_leaf.append(_child_leaf)
+                    """
                     # 5.
 
                 # =========================================
-
+                _child_leaf.predict = decisions[num_of_decisions.index(max(num_of_decisions))]
                 leaf_list.append(_child_leaf)
             _leaf.terminateBuilding = True  # branch 를 마친 parent leaf 는 branch 중지 해야함
-
+            sleep(0.1)
             # =========================================
+        depth += 1
     return result_leaf, leaf_list, root
 
 
@@ -253,10 +268,13 @@ def processContinuousFeatures(data, attribute, entropy, config):
                 subset2, config)
             subset_gains.append(threshold_gain)
         if algorithm == 'C4.5':  # C4.5 also need gain in the block above. That's why, instead of else if we used direct if condition here
-            threshold_splitinfo = -subset1_probability * math.log(subset1_probability,
-                                                                  2) - subset2_probability * math.log(
-                subset2_probability, 2)
-            gainratio = threshold_gain / threshold_splitinfo
+            #threshold_splitinfo = -subset1_probability * math.log(subset1_probability,2) - subset2_probability * math.log(subset2_probability, 2)
+            #gainratio = threshold_gain / threshold_splitinfo
+
+            threshold_splitinfo = math.log(len(subset1)) - subset1_probability * math.log(len(subset1) * subset1_probability, 2) + math.log(len(subset2)) - subset2_probability * math.log(len(subset2) * subset2_probability, 2)
+            gainratio = threshold_gain/(1+threshold_splitinfo)
+
+
             if gainratio is None:
                 print(1)
             subset_gainratios.append(gainratio)
