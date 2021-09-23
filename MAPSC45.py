@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import Training
+from viztree import viztree
 
 
 def data_split(data, _portion: float):
@@ -24,13 +25,15 @@ def data_split(data, _portion: float):
 
 def fit(data, attribute, config):
     # 나중에 함수들 다시 정리
-    result = [i for i in Training.buildDecisionTree(data, attribute, config, start=True, max_depth=10)]
+    result_leaf, leaf_list, root = Training.buildDecisionTree(data, attribute, config, start=True, max_depth=7)
+    result = [i for i in result_leaf]
     rule_decision = []
     for i in result:
         rule_decision.append([i.rule, max(list(map(lambda x: x.Decision, i.dataset)),
                                           key=list(map(lambda x: x.Decision, i.dataset)).count)])
     for i in rule_decision:
         print(i[0])
+    viztree(leaf_list, root)
     return rule_decision
 
 

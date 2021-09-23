@@ -3,6 +3,7 @@ class Data(object):
         for (key, value) in zip(keys, values):
             self.__dict__[key] = value
         self.id = 0
+        self.winner = ''
         self.usedCategorical = []
         self.predict = None
 
@@ -19,6 +20,11 @@ class Leaf:
         self.dataset = []
         self.terminateBuilding = False
         self.branch = 0
+        self.parent = None
+        self.id = None
+        self.branchAttribute = None
+        self.classes = None
+        self.decision = []
 
 
 def attribute_set(attribute, data):

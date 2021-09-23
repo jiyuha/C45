@@ -2,12 +2,13 @@ import pandas as pd
 import MAPSC45 as mc
 import data_load
 import time
+#from sklearn.model_selection import train_test_split
 
 
 if __name__ == '__main__':
-
+    start_time = time.time()
     df = pd.read_csv("dataset/wine.csv")
-    train_data, test_data = mc.data_split(df, 0.1)
+    train_data, test_data = mc.data_split(df, 0.3)
     attribute_name = [i.replace(' ', '') for i in df]
 
     # ===========================================================
@@ -40,6 +41,9 @@ if __name__ == '__main__':
 
     config = {'algorithm': 'C4.5'}
     rule_decision = mc.fit(train_data, attribute, config)
+    print("=================================")
+    print('Fitting time : ', time.time() - start_time, 'seconds')
+    print("=================================")
     test_data = mc.predict(test_data, rule_decision)
     TP, FN, FP, TN = mc.evaluate(test_data)
     print('Accuracy : ', ((TP + TN)/len(test_data)) * 100, '%')
