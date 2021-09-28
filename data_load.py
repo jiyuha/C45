@@ -64,7 +64,7 @@ class DT:
 
 def attribute_set(attribute, data):
     # attribute 의 데이터 타입(범주형 or 연속형)을 판단
-    if len(set(map(lambda x: x.__getattribute__(attribute.name), data))) <= 10:
+    if len(set(map(lambda x: x.__getattribute__(attribute.name), data))) <= 5:
         attribute.type = 'Categorical'
         for _data in data:
             setattr(_data,attribute.name,str(_data.__getattribute__(attribute.name)))

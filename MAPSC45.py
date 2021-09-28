@@ -2,11 +2,8 @@ import numpy as np
 import pandas as pd
 import Training
 from data_load import DT
-from viztree import viztree
 import time
-from tqdm import tqdm
-from colorama import Style, Fore
-from time import sleep
+import pickle
 
 
 def data_split(data, _portion: float):
@@ -28,9 +25,9 @@ def data_split(data, _portion: float):
     return train_data, test_data
 
 
-def createTree(train_data, test_data, attribute, config):
+def createTree(train_data, test_data, attribute, config, filename, max_depth=7):
     start_time = time.time()
-    result_leaf, leaf_list, root = Training.buildDecisionTree(train_data, attribute, config, max_depth=5)
+    result_leaf, leaf_list, root = Training.buildDecisionTree(train_data, attribute, config, max_depth=max_depth)
     print("\n=================================")
     print('Creating Tree : ', time.time() - start_time)
     print("=================================")
@@ -44,32 +41,11 @@ def createTree(train_data, test_data, attribute, config):
     tree = DT()
     tree.leaf = leaf_list
     tree.root = root
-    tree.test_data = test_data
     tree.rule_decision = rule_decision
-    start_time = time.time()
-    tree.fit()
-    print("=================================")
-    print('Fitting time : ', time.time() - start_time)
-    print("=================================")
-    # ===========================================================
-    start_time = time.time()
-    viztree(tree.leaf, tree.root)  # Test set tree
-    print("=================================")
-    print('Visualizing : ', time.time() - start_time)
-    # ===========================================================
+    with open('tree/'+filename + '_'+str(max_depth)+'.p', 'wb') as file:  # james.p 파일을 바이너리 쓰기 모드(wb)로 열기
+        pickle.dump(tree, file)
 
     return tree
-
-
-"""
-def predict(tree):
-    for obj in tqdm(tree.test_data, desc=Fore.GREEN + Style.BRIGHT + "Predicting : ", mininterval=0.1):
-        for rule in tree.rule_decision:
-            if eval(rule[0]):
-                obj.predict = rule[1]
-        sleep(0.1)
-    return tree.test_data
-"""
 
 
 def evaluate(test_data):

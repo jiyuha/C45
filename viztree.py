@@ -6,30 +6,33 @@ def viztree(leaf_list, root):
     dot = Digraph(comment='Visualization', format='svg')
     for i in leaf_id:
         if sum(i[4]) > 0:
-            bar = 'gray98;' + str(i[4][0] / sum(i[4])) + ':mistyrose;' + str(i[4][1] / sum(i[4]))
+            bar = 'slategray1;' + str(i[4][0] / sum(i[4])) + ':mistyrose;' + str(i[4][1] / sum(i[4]))
         else:
-            bar = 'gray98;0.5:mistyrose;0.5'
+            bar = 'slategray1;0.5:mistyrose;0.5'
         if i[1] is None:
             if i[4][0] >= i[4][1]:
-                decision = 'Good'
+                decision = 'True'
+                label = 'True:' + str(i[4][0]) + ' / ' + 'False:' + str(i[4][1]) + '\n'
+                dot.node(i[0], "<"+label+"<font color='blue'><br/>"+decision+"<br/></font>>")
+                '<<FONT COLOR="RED" POINT-SIZE="24.0" FACE="ambrosia">line4</FONT> and then more stuff>'
+                print()
             else:
-                decision = 'Bad'
-            dot.node(i[0], 'Good : ' + str(i[4][0]) + ' / ' + 'Bad : ' + str(i[4][1]) + '\n' + decision,
-                     color='aquamarine3',
-                     shape='oval', fontname='Arial', style='filled', fillcolor='gray98', fontcolor='aquamarine3')
+                decision = 'False'
+                label = 'True:' + str(i[4][0]) + ' / ' + 'False:' + str(i[4][1]) + '\n'
+                dot.node(i[0], "<"+label+"<font color='red'><br/>"+decision+"<br/></font>>")
         else:
-            dot.node(i[0], i[1] + '\n[good:' + str(i[4][0]) + ' / bad:' + str(i[4][1]) + ']', color='antiquewhite4',
-                     shape='box', fontname='Arial', style='striped', fillcolor=bar, fontcolor='antiquewhite4')
+            dot.node(i[0], i[1] + '\n[True:' + str(i[4][0]) + ' / False:' + str(i[4][1]) + ']',
+                     color='antiquewhite4',shape='box', fontname='Arial', style='striped', fillcolor=bar, fontcolor='antiquewhite4')
         if i[2] is '1':
-            dot.edge(i[2], i[0], i[3], color='grey73', fontname='Arial', arrowhead='normal')
+            dot.edge(i[2], i[0], i[3], fontname='Arial', arrowhead='normal',color='antiquewhite4')
         else:
-            dot.edge(i[2].id, i[0], i[3], color='grey73', fontname='Arial', arrowhead='normal')
+            dot.edge(i[2].id, i[0], i[3], fontname='Arial', arrowhead='normal',color='antiquewhite4')
 
     # ===========================================================
 
-    root_bar = 'gray98;' + str(root.decision[0] / sum(root.decision)) + ':mistyrose;' + str(
+    root_bar = 'slategray1;' + str(root.decision[0] / sum(root.decision)) + ':mistyrose;' + str(
         root.decision[1] / sum(root.decision))
-    dot.node('1', root.branchAttribute + '\n[good:' + str(root.decision[0]) + ' / bad:' + str(root.decision[1]) + ']',
+    dot.node('1', root.branchAttribute + '\n[True:' + str(root.decision[0]) + ' / False:' + str(root.decision[1]) + ']',
              color='antiquewhite4', shape='box', fontname='Arial', style='striped', fillcolor=root_bar,
              fontcolor='antiquewhite4')
 
