@@ -1,0 +1,197 @@
+// Visualization
+digraph {
+	10 [label="totalsulfurdioxide
+[True:114 / False:181]" color=antiquewhite4 fillcolor="slategray1;0.3864406779661017:mistyrose;0.6135593220338983" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1 -> 10 [label="<=10.567" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	11 [label="volatileacidity
+[True:142 / False:42]" color=antiquewhite4 fillcolor="slategray1;0.7717391304347826:mistyrose;0.22826086956521738" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1 -> 11 [label=">10.567" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	100 [label="volatileacidity
+[True:112 / False:163]" color=antiquewhite4 fillcolor="slategray1;0.4072727272727273:mistyrose;0.5927272727272728" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	10 -> 100 [label="<=108.667" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	101 [label="pH
+[True:2 / False:18]" color=antiquewhite4 fillcolor="slategray1;0.1:mistyrose;0.9" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	10 -> 101 [label=">108.667" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	110 [label="volatileacidity
+[True:2 / False:8]" color=antiquewhite4 fillcolor="slategray1;0.2:mistyrose;0.8" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	11 -> 110 [label=">0.85" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	111 [label="sulphates
+[True:140 / False:34]" color=antiquewhite4 fillcolor="slategray1;0.8045977011494253:mistyrose;0.19540229885057472" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	11 -> 111 [label="<=0.85" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1000 [label="residualsugar
+[True:91 / False:155]" color=antiquewhite4 fillcolor="slategray1;0.3699186991869919:mistyrose;0.6300813008130082" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	100 -> 1000 [label=">0.347" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1001 [label="pH
+[True:21 / False:8]" color=antiquewhite4 fillcolor="slategray1;0.7241379310344828:mistyrose;0.27586206896551724" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	100 -> 1001 [label="<=0.347" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1010 [label="citricacid
+[True:2 / False:0]" color=antiquewhite4 fillcolor="slategray1;1.0:mistyrose;0.0" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	101 -> 1010 [label="<=2.93" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1011 [label="fixedacidity
+[True:0 / False:18]" color=antiquewhite4 fillcolor="slategray1;0.0:mistyrose;1.0" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	101 -> 1011 [label=">2.93" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1100 [label="volatileacidity
+[True:2 / False:8]" color=antiquewhite4 fillcolor="slategray1;0.2:mistyrose;0.8" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	110 -> 1100 [label=">0.855" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1101 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	110 -> 1101 [label="<=0.855" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1110 [label="density
+[True:50 / False:19]" color=antiquewhite4 fillcolor="slategray1;0.7246376811594203:mistyrose;0.2753623188405797" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	111 -> 1110 [label="<=0.633" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1111 [label="fixedacidity
+[True:90 / False:15]" color=antiquewhite4 fillcolor="slategray1;0.8571428571428571:mistyrose;0.14285714285714285" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	111 -> 1111 [label=">0.633" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	10000 [label="citricacid
+[True:3 / False:1]" color=antiquewhite4 fillcolor="slategray1;0.75:mistyrose;0.25" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1000 -> 10000 [label=">10.667" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	10001 [label="alcohol
+[True:88 / False:154]" color=antiquewhite4 fillcolor="slategray1;0.36363636363636365:mistyrose;0.6363636363636364" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1000 -> 10001 [label="<=10.667" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	10010 [label=<True:4 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	1001 -> 10010 [label="<=3.11" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	10011 [label="sulphates
+[True:17 / False:8]" color=antiquewhite4 fillcolor="slategray1;0.68:mistyrose;0.32" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1001 -> 10011 [label=">3.11" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	10100 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	1010 -> 10100 [label=">0.28" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	10101 [label=<True:2 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	1010 -> 10101 [label="<=0.28" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	10110 [label="volatileacidity
+[True:0 / False:0]" color=antiquewhite4 fillcolor="slategray1;0.5:mistyrose;0.5" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1011 -> 10110 [label="<=5.9" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	10111 [label="totalsulfurdioxide
+[True:0 / False:18]" color=antiquewhite4 fillcolor="slategray1;0.0:mistyrose;1.0" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1011 -> 10111 [label=">5.9" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	11000 [label=<True:1 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	1100 -> 11000 [label="<=0.865" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	11001 [label="volatileacidity
+[True:1 / False:8]" color=antiquewhite4 fillcolor="slategray1;0.1111111111111111:mistyrose;0.8888888888888888" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1100 -> 11001 [label=">0.865" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	11100 [label="residualsugar
+[True:47 / False:19]" color=antiquewhite4 fillcolor="slategray1;0.7121212121212122:mistyrose;0.2878787878787879" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1110 -> 11100 [label=">0.992" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	11101 [label=<True:3 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	1110 -> 11101 [label="<=0.992" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	11110 [label="totalsulfurdioxide
+[True:90 / False:12]" color=antiquewhite4 fillcolor="slategray1;0.8823529411764706:mistyrose;0.11764705882352941" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1111 -> 11110 [label="<=14.067" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	11111 [label="volatileacidity
+[True:0 / False:3]" color=antiquewhite4 fillcolor="slategray1;0.0:mistyrose;1.0" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	1111 -> 11111 [label=">14.067" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	100000 [label=<True:3 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	10000 -> 100000 [label="<=0.37" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	100001 [label=<True:0 / False:1
+<font color='red'><br/>False<br/></font>>]
+	10000 -> 100001 [label=">0.37" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	100010 [label="freesulfurdioxide
+[True:44 / False:110]" color=antiquewhite4 fillcolor="slategray1;0.2857142857142857:mistyrose;0.7142857142857143" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	10001 -> 100010 [label="<=9.833" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	100011 [label="density
+[True:44 / False:44]" color=antiquewhite4 fillcolor="slategray1;0.5:mistyrose;0.5" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	10001 -> 100011 [label=">9.833" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	100110 [label="chlorides
+[True:17 / False:8]" color=antiquewhite4 fillcolor="slategray1;0.68:mistyrose;0.32" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	10011 -> 100110 [label=">0.44" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	100111 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	10011 -> 100111 [label="<=0.44" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	101100 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	10110 -> 101100 [label="<=0.19" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	101101 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	10110 -> 101101 [label=">0.19" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	101110 [label="totalsulfurdioxide
+[True:0 / False:18]" color=antiquewhite4 fillcolor="slategray1;0.0:mistyrose;1.0" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	10111 -> 101110 [label=">109.0" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	101111 [label="fixedacidity
+[True:0 / False:0]" color=antiquewhite4 fillcolor="slategray1;0.5:mistyrose;0.5" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	10111 -> 101111 [label="<=109.0" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	110010 [label="density
+[True:1 / False:5]" color=antiquewhite4 fillcolor="slategray1;0.16666666666666666:mistyrose;0.8333333333333334" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	11001 -> 110010 [label="<=1.01" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	110011 [label=<True:0 / False:3
+<font color='red'><br/>False<br/></font>>]
+	11001 -> 110011 [label=">1.01" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	111000 [label=<True:3 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	11100 -> 111000 [label="<=1.2" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	111001 [label="sulphates
+[True:44 / False:19]" color=antiquewhite4 fillcolor="slategray1;0.6984126984126984:mistyrose;0.30158730158730157" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	11100 -> 111001 [label=">1.2" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	111100 [label="chlorides
+[True:0 / False:2]" color=antiquewhite4 fillcolor="slategray1;0.0:mistyrose;1.0" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	11110 -> 111100 [label=">100.167" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	111101 [label="alcohol
+[True:90 / False:10]" color=antiquewhite4 fillcolor="slategray1;0.9:mistyrose;0.1" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+	11110 -> 111101 [label="<=100.167" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	111110 [label=<True:0 / False:3
+<font color='red'><br/>False<br/></font>>]
+	11111 -> 111110 [label="<=0.645" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	111111 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	11111 -> 111111 [label=">0.645" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1000100 [label=<True:44 / False:107
+<font color='red'><br/>False<br/></font>>]
+	100010 -> 1000100 [label="<=35.0" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1000101 [label=<True:0 / False:3
+<font color='red'><br/>False<br/></font>>]
+	100010 -> 1000101 [label=">35.0" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1000110 [label=<True:1 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	100011 -> 1000110 [label=">1.001" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1000111 [label=<True:43 / False:44
+<font color='red'><br/>False<br/></font>>]
+	100011 -> 1000111 [label="<=1.001" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1001100 [label=<True:17 / False:7
+<font color='blue'><br/>True<br/></font>>]
+	100110 -> 1001100 [label="<=0.105" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1001101 [label=<True:0 / False:1
+<font color='red'><br/>False<br/></font>>]
+	100110 -> 1001101 [label=">0.105" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1011100 [label=<True:0 / False:13
+<font color='red'><br/>False<br/></font>>]
+	101110 -> 1011100 [label=">117.167" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1011101 [label=<True:0 / False:5
+<font color='red'><br/>False<br/></font>>]
+	101110 -> 1011101 [label="<=117.167" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1011110 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	101111 -> 1011110 [label="<=7.7" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1011111 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	101111 -> 1011111 [label=">7.7" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1100100 [label=<True:1 / False:5
+<font color='red'><br/>False<br/></font>>]
+	110010 -> 1100100 [label=">0.995" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1100101 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	110010 -> 1100101 [label="<=0.995" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1110010 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	111001 -> 1110010 [label="<=0.457" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1110011 [label=<True:44 / False:19
+<font color='blue'><br/>True<br/></font>>]
+	111001 -> 1110011 [label=">0.457" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1111000 [label=<True:0 / False:2
+<font color='red'><br/>False<br/></font>>]
+	111100 -> 1111000 [label=">0.068" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1111001 [label=<True:0 / False:0
+<font color='blue'><br/>True<br/></font>>]
+	111100 -> 1111001 [label="<=0.068" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1111010 [label=<True:86 / False:8
+<font color='blue'><br/>True<br/></font>>]
+	111101 -> 1111010 [label=">10.6" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1111011 [label=<True:4 / False:2
+<font color='blue'><br/>True<br/></font>>]
+	111101 -> 1111011 [label="<=10.6" arrowhead=normal color=antiquewhite4 fontname=Arial]
+	1 [label="alcohol
+[True:256 / False:223]" color=antiquewhite4 fillcolor="slategray1;0.534446764091858:mistyrose;0.46555323590814196" fontcolor=antiquewhite4 fontname=Arial shape=box style=striped]
+}
