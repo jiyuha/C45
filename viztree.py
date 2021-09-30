@@ -13,13 +13,13 @@ def viztree(leaf_list, root):
             if i[4][0] >= i[4][1]:
                 decision = 'True'
                 label = 'True:' + str(i[4][0]) + ' / ' + 'False:' + str(i[4][1]) + '\n'
-                dot.node(i[0], "<"+label+"<font color='blue'><br/>"+decision+"<br/></font>>")
+                dot.node(i[0], "<"+label+"<font color='blue'><br/>"+decision+"<br/></font>>",fontcolor='antiquewhite4',color='antiquewhite4', fontname='Arial')
                 '<<FONT COLOR="RED" POINT-SIZE="24.0" FACE="ambrosia">line4</FONT> and then more stuff>'
                 print()
             else:
                 decision = 'False'
                 label = 'True:' + str(i[4][0]) + ' / ' + 'False:' + str(i[4][1]) + '\n'
-                dot.node(i[0], "<"+label+"<font color='red'><br/>"+decision+"<br/></font>>")
+                dot.node(i[0], "<"+label+"<font color='red'><br/>"+decision+"<br/></font>>",fontcolor='antiquewhite4',color='antiquewhite4', fontname='Arial')
         else:
             dot.node(i[0], i[1] + '\n[True:' + str(i[4][0]) + ' / False:' + str(i[4][1]) + ']',
                      color='antiquewhite4',shape='box', fontname='Arial', style='striped', fillcolor=bar, fontcolor='antiquewhite4')
